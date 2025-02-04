@@ -57,5 +57,5 @@ function mastersDegree(data){
  }
  groupUsers(users);
 
-
-module.exports = {playingVideoGames,stayingInGermany,mastersDegree,groupUsers};
+module.exports = {
+playingVideoGames,stayingInGermany,mastersDegree,groupUsers};
