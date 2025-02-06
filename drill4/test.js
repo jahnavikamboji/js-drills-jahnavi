@@ -16,9 +16,9 @@ const square = map (items, (num) => num*num);
 console.log(square);
 
 
-reduce
-const sum = reduce(num, (acc, num) => acc + num, 0);
-console.log(sum);
+//reduce
+const cb = (acc, curr) => acc + curr;
+ console.log(reduce(items, cb)); 
 
 //find
 const firstOdd = find(items, num => num % 2 !== 0);
@@ -28,3 +28,6 @@ console.log(firstOdd);
 const evenNum = filter(items, num => num % 2 === 0);
 console.log(evenNum);
 
+//flatten
+const nestedArray = [1, [2], [[3]], [[[4]]]];
+console.log(flatten(nestedArray));

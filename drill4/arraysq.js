@@ -42,12 +42,18 @@ function reduce(elements, cb, startingValue) {
   // Elements will be passed one by one into `cb` along with the `startingValue`.
   // `startingValue` should be the first argument passed to `cb` and the array element should be the second argument.
   // `startingValue` is the starting value.  If `startingValue` is undefined then make `elements[0]` the initial value.
-  // let result =[];
-  // for (let i = startIndex; i < elements.length; i++) {
-  //   acc = push.cb(acc, elements[i]); 
-  // }
-  // return result(acc); 
+  
+  let index = startingValue || 0;
+  const control = elements[index];
+  let reduced = control;
+  for ( let i = index+1; i < elements.length; ++i ) {
+    reduced = cb(reduced, elements[i] )
+  }
+  return reduced;
 }
+// const cb = (acc, curr) => acc + curr;
+// console.log(reduce(items, cb)); 
+
 
 
 function find(elements, cb) {
@@ -80,26 +86,19 @@ function filter(elements, cb) {
 
 
 const nestedArray = [1, [2], [[3]], [[[4]]]]; // use this to test 'flatten'
-
 function flatten(elements) {
   // Flattens a nested array (the nesting can be to any depth).
   // Hint: You can solve this using recursion.
   // Example: flatten([1, [2], [3, [[4]]]]); => [1, 2, 3, 4];
 //   let result = [];
-   
-//   function recursiveFlatten(arr) {
-//     for (let i = 0; i < arr.length; i++) {
-//       if (Array.isArray(arr[i])) {
-//         recursiveFlatten(arr[i]);
-//       } else {
-//         result[result.length] = arr[i];
-//       }
-//     }
-//   }
-//     recursiveFlatten(elements);
-//     return result;
-  }
-// console.log(recursiveFlatten(nestedArray));
+   let flat = [];
+  return elements.reduce((acc, item) => 
+      acc.concat(Array.isArray(item) ? flatten(item) : item), []
+  );
+  return flat;
+}
+console.log(flatten(nestedArray));
+
 
 module.exports = {each,
   map,
